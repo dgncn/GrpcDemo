@@ -8,6 +8,11 @@ public class ProductContext : DbContext
     {
 
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        SeedProcessor.Seed(modelBuilder);
+        base.OnModelCreating(modelBuilder);
+    }
 
     public DbSet<Domain.Entities.Product> Products { get; set; }
 }
