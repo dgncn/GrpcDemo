@@ -1,13 +1,19 @@
 using GrpcDemo.Product.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<ProductContext>(option => 
+builder.Services.AddDbContext<ProductContext>(option =>
     option.UseNpgsql("name=ConnectionStrings:PostgreConnectionString")
 );
+
+
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
