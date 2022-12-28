@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GrpcDemo.Product.Application.Commands.GetAllProducts
 {
-    internal class GetAllProductsCommand  : IRequest<GetAllProductsCommandResponse>
+    public class GetAllProductsQuery  : IRequest<GetAllProductsQueryResponse>
     {
 
     }

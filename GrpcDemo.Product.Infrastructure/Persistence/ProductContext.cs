@@ -2,7 +2,7 @@
 
 namespace GrpcDemo.Product.Infrastructure.Persistence;
 
-public class ProductContext : DbContext
+public class ProductContext : DbContext, IProductContext
 {
     public ProductContext(DbContextOptions<ProductContext> dbContextOptions) : base(dbContextOptions)
     {
@@ -14,5 +14,12 @@ public class ProductContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
+    public async Task<int> SaveChanges()
+    {
+       return await this.SaveChangesAsync();
+    }
+
     public DbSet<Domain.Entities.Product> Products { get; set; }
+
+    
 }

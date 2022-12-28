@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GrpcDemo.Product.Application.Commands.GetAllProducts
 {
-    internal class GetAllProductsCommandResponse
+    public class GetAllProductsQueryResponse
     {
         public List<ProductViewModel> Products = null!;
     }

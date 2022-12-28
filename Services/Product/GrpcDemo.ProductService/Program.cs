@@ -1,21 +1,25 @@
+using GrpcDemo.Product.Application.Commands.GetAllProducts;
 using GrpcDemo.Product.Infrastructure.Persistence;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<ProductContext>(option =>
+builder.Services.AddDbContext<IProductContext,ProductContext>(option =>
     option.UseNpgsql("name=ConnectionStrings:PostgreConnectionString")
 );
 
-
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(GetAllProductsQueryHandler));
+//builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

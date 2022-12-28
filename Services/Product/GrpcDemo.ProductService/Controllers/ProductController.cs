@@ -1,4 +1,6 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using GrpcDemo.Product.Application.Commands.GetAllProducts;
 
 namespace GrpcDemo.ProductService.Controllers
 {
@@ -6,28 +8,26 @@ namespace GrpcDemo.ProductService.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        private readonly ILogger<ProductController> _logger;
+
+        public ProductController(IMediator mediator, ILogger<ProductController> logger)
+        {
+            _mediator=mediator;
+            _logger=logger;
+        }
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<ProductController> _logger;
-
-        public ProductController(ILogger<ProductController> logger)
-        {
-            _logger = logger;
-        }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IActionResult> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var result = await _mediator.Send(new GetAllProductsQuery());
+            return Ok(result);
         }
     }
 }

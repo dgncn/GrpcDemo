@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\GrpcDemo.Product.Domain\GrpcDemo.Product.Domain.csproj" />
+		<ProjectReference Include="..\GrpcDemo.Product.Infrastructure\GrpcDemo.Product.Infrastructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
