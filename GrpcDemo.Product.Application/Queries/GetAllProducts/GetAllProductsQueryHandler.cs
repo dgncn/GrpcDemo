@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
-namespace GrpcDemo.Product.Application.Commands.GetAllProducts
+namespace GrpcDemo.Product.Application.Queries.GetAllProducts
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, GetAllProductsQueryResponse>
     {
@@ -11,8 +11,8 @@ namespace GrpcDemo.Product.Application.Commands.GetAllProducts
         private readonly IMapper _mapper;
         public GetAllProductsQueryHandler(IProductContext productContext, IMapper mapper)
         {
-            _productContext= productContext;
-            _mapper=mapper;
+            _productContext = productContext;
+            _mapper = mapper;
         }
         public async Task<GetAllProductsQueryResponse> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {

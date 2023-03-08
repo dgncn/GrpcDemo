@@ -1,10 +1,10 @@
-using GrpcDemo.Product.Application.Commands.GetAllProducts;
 using GrpcDemo.Product.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using GrpcDemo.Product.Application.Queries.GetAllProducts;
 
 var builder = WebApplication.CreateBuilder(args);
 

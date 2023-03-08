@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GrpcDemo.Product.Application.Commands.GetAllProducts;
 using GrpcDemo.Product.Application.Models;
+using GrpcDemo.Product.Application.Queries.GetAllProducts;
 
 namespace GrpcDemo.Product.Application.Mappings
 {
